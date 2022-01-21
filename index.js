@@ -8,7 +8,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
-app.listen(port, function(req, res){
+app.listen(process.env.PORT || port, function(req, res){
     console.log("Listening on port " + port);
 });
 
