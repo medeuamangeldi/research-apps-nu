@@ -17,3 +17,27 @@ i {
 .navbar-brand {
     font-size: 1.5rem;
 }
+
+.row {
+    margin-top: 2%;
+}
+
+.welcomingText {
+    text-align: center;
+}
+
+.descriptionText {
+    text-align: center;
+}
+
+.inputs {
+    text-align: center;
+}
+
+.plot {
+    text-align: center;
+}
+
+.buttonModel {
+    text-align: center;
+}

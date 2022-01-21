@@ -8,6 +8,74 @@
   <!-- header -->
   <%- include('../partials/header'); %>
 
+  <div class="row">
+    <div class="col"></div>
+    <div class="col welcomingText"><h3>Welcome to Concrete Pumping Modeler</h3></div>
+    <div class="col"></div>
+  </div>
+
+  <div class="row">
+    <div class="col"></div>
+    <div class="col descriptionText"><h5>The purpose of this application is to demonstrate the modeling of concrete pumping based on Dr. Yanwei Wang's research.</h5></div>
+    <div class="col"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 inputs"><h4>Inputs will be here</h4></div>
+    <div class="col-lg-4 plot">
+        <canvas id="myChart" width="400" height="300"></canvas>
+        <script>
+          const labels = [
+            '0',
+            '0.016',
+            '0.033',
+            '0.049',
+            '0.064',
+            '0.1',
+          ];
+        
+          const data = {
+            labels: labels,
+            datasets: [{
+              label: 'My First dataset',
+              backgroundColor: 'rgb(0, 153, 0)',
+              borderColor: 'rgb(0, 153, 0)',
+              data: [0, 10, 15, 25, 35, 40, 55],
+            }]
+          };
+        
+          const config = {
+            type: 'line',
+            data: data,
+            options: {
+              scales: {
+                y: {
+                  title: {
+                  display: true,
+                  text: 'velocity (m/s)'
+                }
+                },
+                x: {
+                  title: {
+                  display: true,
+                  text: 'Radius (m)'
+                }
+                }
+            }
+            }
+          };
+        </script>
+
+        <script>
+          const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+          );
+        </script>
+    </div>
+    <div class="col-lg-4 buttonModel"> <h4> Model button will be here </h4></div>
+  </div>
+ 
   <!-- footer -->
   <%- include('../partials/footer'); %>
 </body>
