@@ -1,0 +1,17 @@
+{
+  "name": "concrete-pumping",
+  "version": "1.0.0",
+  "description": "This is the web application for modeling the concrete pumping based on research paper.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Medeu Amangeldi",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "child_process": "^1.0.2",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2"
+  }
+}

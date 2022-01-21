@@ -1,0 +1,19 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+i {
+    margin-right: 3%;
+}
+
+.container-fluid {
+    padding: 2% 15%;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
