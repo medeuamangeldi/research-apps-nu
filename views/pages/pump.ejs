@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Concrete Pumping</title>
+  <title>Concrete Pumping Modeler</title>
   <%- include('../partials/head'); %>
 </head>
 <body>
@@ -10,37 +10,26 @@
 
   <div class="row">
     <div class="col"></div>
-    <div class="col welcomingText"><h3>Welcome to Concrete Pumping Modeler</h3></div>
+    <div class="col welcomingnumber"><h3>Welcome to Concrete Pumping Modeler</h3></div>
     <div class="col"></div>
   </div>
 
   <div class="row">
-    <div class="col"></div>
-    <div class="col descriptionText"><h5>The purpose of this application is to demonstrate the modeling of concrete pumping based on Dr. Yanwei Wang's research.</h5></div>
-    <div class="col"></div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4 inputs"><h4>Inputs will be here</h4></div>
-    <div class="col-lg-4 plot">
-        <canvas id="myChart" width="50" height="50"></canvas>
+    <div class="col-lg-4 inputs">
+      <h5>The purpose of this application is to demonstrate the modeling of concrete pumping based on Dr. Yanwei Wang's research.</h5>
+    </div>
+    <div class="col-lg-4">
+        <canvas id="myChart" height="300"></canvas>
         <script>
-          const labels = [
-            '0',
-            '0.016',
-            '0.033',
-            '0.049',
-            '0.064',
-            '0.1',
-          ];
+          const labels = <%= labelData%>;
         
           const data = {
             labels: labels,
             datasets: [{
-              label: 'My First dataset',
-              backgroundColor: 'rgb(0, 153, 0)',
-              borderColor: 'rgb(0, 153, 0)',
-              data: [0, 10, 15, 25, 35, 40, 55],
+              label: 'Velocity profile of concrete',
+              backgroundColor: 'rgb(0, 153, 100)',
+              borderColor: 'rgb(0, 153, 153)',
+              data: <%= inputData%>,
             }]
           };
         
@@ -59,9 +48,17 @@
                   title: {
                   display: true,
                   text: 'Radius (m)'
+                },
+                ticks: {
+                // For a category axis, the val is the index so the lookup via getLabelForValue is needed
+                callback: function(val, index) {
+                  // Hide every 2nd tick label
+                  return val;
+                },
                 }
-                }
-            }
+                   }
+                
+              }
             }
           };
         </script>
@@ -73,7 +70,67 @@
           );
         </script>
     </div>
-    <div class="col-lg-4 buttonModel"> <h4> Model button will be here </h4></div>
+    <div class="col-lg-4 buttonModel">
+      <form action="/run" method="post">
+        
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-sm">a</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="1" name="a">
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-sm">b</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="1400" name="b">
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-sm">c</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="1.6" name="c">
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-sm">d</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="2" name="d">
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-sm">e</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="0.5" name="e">
+        </div>
+
+        <label for="rad">Choose radius (m)</label><br>
+        <input type="range" value="0.01" min="0.005" max="0.1" step = "0.001" oninput="this.nextElementSibling.value = this.value" name="rad">
+        <output>0.01</output>
+
+        <button type="submit" class="btn btn-outline-dark" id="formEls">Run</button>
+      </form>
+
+      <button type="button" class="btn btn-outline-dark" id="fileRequest">Download as Excel file</button>
+      <script>
+        $("#fileRequest").click(function() {
+              // hope the server sets Content-Disposition: attachment!
+              const dataSet = 'Velocity (m/s),' + <%= OutputData%> + '\r\n' + 'Radius (m),' + <%= OutputLabel%>;
+
+              const blob = new Blob([dataSet], {type: "vnd.ms-excel"});
+
+              const href = URL.createObjectURL(blob);
+
+              const a = Object.assign(document.createElement('a'), {
+                href,
+                style: "display:none",
+                download: "VelocityData.csv"
+              });
+
+              document.body.appendChild(a);
+
+              a.click()
+       
+              URL.revokeObjectURL(href);
+
+              a.remove();
+          });
+      </script>
+    </div>
   </div>
  
   <!-- footer -->

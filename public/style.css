@@ -19,7 +19,7 @@ i {
 }
 
 .row {
-    margin-top: 2%;
+    padding: 1% 5%;
 }
 
 .welcomingText {
@@ -36,4 +36,12 @@ i {
 
 .buttonModel {
     text-align: center;
+}
+
+form {
+    padding: 5% 35%;
+}
+
+#formEls {
+    margin: 3% 0;
 }
