@@ -40,7 +40,7 @@ app.post("/run", function(req, res){
           e = req.body.e,
           rad = req.body.rad; 
 
-    const python = spawn('python3', ['public/script.py', a, b, c, d, e, rad]);
+    const python = spawn('python', ['public/script.py', a, b, c, d, e, rad]);
     // req.body.tokensNumber, req.body.topP
     python.stdout.on('data', function (data) {
         console.log('Pipe data from python script ...');
