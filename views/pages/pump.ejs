@@ -21,7 +21,8 @@
     <div class="col-lg-4">
         <canvas id="myChart" height="300"></canvas>
         <script>
-          const labels = <%= labelData%>;
+          const labels = <%- JSON.stringify(labelData); %>;
+          const dataset = <%- JSON.stringify(inputData); %>;
         
           const data = {
             labels: labels,
@@ -29,7 +30,7 @@
               label: 'Velocity profile of concrete',
               backgroundColor: 'rgb(0, 153, 100)',
               borderColor: 'rgb(0, 153, 153)',
-              data: <%= inputData%>,
+              data: dataset,
             }]
           };
         
@@ -53,7 +54,7 @@
                 // For a category axis, the val is the index so the lookup via getLabelForValue is needed
                 callback: function(val, index) {
                   // Hide every 2nd tick label
-                  return val;
+                  return val.toFixed(2);
                 },
                 }
                    }
@@ -99,8 +100,8 @@
         </div>
 
         <label for="rad">Choose radius (m)</label><br>
-        <input type="range" value="0.01" min="0.005" max="0.1" step = "0.001" oninput="this.nextElementSibling.value = this.value" name="rad">
-        <output>0.01</output>
+        <input type="range" value="10" min="2" max="100" step = "1" oninput="this.nextElementSibling.value = this.value" name="rad">
+        <output>10</output>
 
         <button type="submit" class="btn btn-outline-dark" id="formEls">Run</button>
       </form>
