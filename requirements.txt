@@ -162,7 +162,7 @@ nose @ file:///tmp/build/80754af9/nose_1606773131901/work
 notebook @ file:///C:/ci/notebook_1629205926310/work
 numba @ file:///C:/ci/numba_1635186101448/work
 numexpr @ file:///C:/ci/numexpr_1618856738664/work
-numpy @ file:///C:/ci/numpy_and_numpy_base_1626271903025/work
+numpy==1.22.1
 numpydoc @ file:///tmp/build/80754af9/numpydoc_1605117425582/work
 oauthlib @ file:///tmp/build/80754af9/oauthlib_1623060228408/work
 olefile @ file:///Users/ktietz/demo/mc3/conda-bld/olefile_1629805411829/work
