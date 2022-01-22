@@ -32,15 +32,8 @@ app.post("/run", function(req, res){
     var dataToSend;
     var input_data;
     var label_data;
-
-    const a = req.body.a,
-          b = req.body.b,
-          c = req.body.c, 
-          d = req.body.d, 
-          e = req.body.e,
-          rad = req.body.rad; 
-
-    const python = spawn('python3', ['public/script.py', a, b, c, d, e, rad]);
+    
+    const python = spawn('python3', ['public/script.py', req.body.a, req.body.b, req.body.c, req.body.d, req.body.e, req.body.rad]);
     // req.body.tokensNumber, req.body.topP
     python.stdout.on('data', function (data) {
         console.log('Pipe data from python script ...');
