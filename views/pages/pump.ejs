@@ -109,7 +109,7 @@
       <script>
         $("#fileRequest").click(function() {
               // hope the server sets Content-Disposition: attachment!
-              const dataSet = 'Velocity (m/s),' + <%= OutputData%> + '\r\n' + 'Radius (m),' + <%= OutputLabel%>;
+              const dataSet = 'Velocity (m/s),' + <%= OutputData%> + "\r\n" + 'Radius (m),' + <%= OutputLabel%>;
 
               const blob = new Blob([dataSet], {type: "vnd.ms-excel"});
 
