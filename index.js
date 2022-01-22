@@ -40,7 +40,7 @@ app.post("/run", function(req, res){
           e = req.body.e, 
           rad = req.body.rad;
     
-    var Domain = nj.arange(0, rad, 0.5).tolist();
+    var Domain = nj.arange(0, rad, 0.1).tolist();
 
     var someFunction = function(x) {
       return a+(b-a)*(1+(c*x)**d)**((e-1)/d);  
@@ -58,9 +58,6 @@ app.post("/run", function(req, res){
 
     label_data = Domain.map(makeStr);
     input_data = Range.map(makeFloat);
-
-    console.log(label_data);
-    console.log(input_data);
 
     res.render("pages/pump", {OutputLabel: JSON.stringify(Domain), OutputData: JSON.stringify(input_data), inputData: input_data, labelData: label_data});
 
